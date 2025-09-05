@@ -28,32 +28,81 @@
       position: relative;
     }
 
-    /* === Animated Animal Line Background === */
+    /* === Animated Background (CSS Only) === */
     .animated-background {
       position: fixed;
       top: 0;
       left: 0;
       width: 100vw;
       height: 100vh;
+      overflow: hidden;
       z-index: -1;
+      pointer-events: none;
+    }
+
+    .circle {
+      position: absolute;
+      width: 80px;
+      height: 80px;
+      border: 2px solid var(--primary);
+      border-radius: 50%;
       opacity: 0.07;
+      animation: float 20s linear infinite;
     }
 
-    .animal-path {
-      stroke: var(--primary);
-      stroke-width: 2;
-      fill: none;
-      stroke-dasharray: 1000;
-      stroke-dashoffset: 1000;
-      animation: draw 8s ease-in-out infinite alternate;
+    .circle:nth-child(1) {
+      top: 10%;
+      left: 15%;
+      animation-delay: 0s;
     }
 
-    @keyframes draw {
-      to {
-        stroke-dashoffset: 0;
+    .circle:nth-child(2) {
+      top: 30%;
+      left: 70%;
+      width: 60px;
+      height: 60px;
+      animation-delay: 5s;
+    }
+
+    .circle:nth-child(3) {
+      top: 60%;
+      left: 25%;
+      width: 100px;
+      height: 100px;
+      animation-delay: 10s;
+    }
+
+    .circle:nth-child(4) {
+      top: 80%;
+      left: 80%;
+      width: 50px;
+      height: 50px;
+      animation-delay: 15s;
+    }
+
+    .circle:nth-child(5) {
+      top: 45%;
+      left: 50%;
+      width: 70px;
+      height: 70px;
+      animation-delay: 20s;
+    }
+
+    @keyframes float {
+      0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 0.07;
+      }
+      50% {
+        opacity: 0.12;
+      }
+      100% {
+        transform: translateY(-100vh) rotate(360deg);
+        opacity: 0;
       }
     }
 
+    /* === Header & Hero === */
     header {
       background: white;
       padding: 1.5rem 2rem;
@@ -198,17 +247,14 @@
 </head>
 <body>
 
-  <!-- Background Animation -->
-  <svg class="animated-background" viewBox="0 0 800 600" preserveAspectRatio="xMidYMid meet">
-    <!-- Cat outline -->
-    <path class="animal-path" d="M150 300 C150 250, 200 250, 200 300 S250 350, 250 300 C250 250, 300 250, 300 300 Q275 375, 225 400 Q175 375, 150 300 Z" />
-    
-    <!-- Dog head (stylized) -->
-    <path class="animal-path" d="M500 300 Q480 250, 500 200 Q520 180, 540 200 Q560 220, 550 240 Q560 260, 540 270 Q520 280, 500 300 Z" />
-    
-    <!-- Rabbit ears (abstract) -->
-    <path class="animal-path" d="M350 200 Q340 100, 360 100 Q370 120, 370 200 M380 200 Q370 100, 390 100 Q400 120, 400 200" />
-  </svg>
+  <!-- CSS Animated Background -->
+  <div class="animated-background">
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+  </div>
 
   <header>
     <div class="logo">
@@ -296,5 +342,6 @@
   <footer>
     <p>&copy; 2025 Pashuruchi. All rights reserved.</p>
   </footer>
+
 </body>
 </html>
