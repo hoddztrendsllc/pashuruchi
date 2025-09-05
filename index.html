@@ -5,8 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Pashuruchi - Pet Feed & Accessories</title>
   <style>
-    /* Google Font */
     @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap');
+
+    :root {
+      --primary-color: #009999;
+      --accent-color: #333;
+      --bg-light: #f9f9f9;
+    }
 
     * {
       margin: 0;
@@ -16,29 +21,31 @@
 
     body {
       font-family: 'Nunito', sans-serif;
-      background: #fff8f0;
-      color: #333;
+      background: var(--bg-light);
+      color: var(--accent-color);
       line-height: 1.6;
     }
 
     header {
-      background: #ff8c42;
-      color: white;
+      background: white;
       padding: 2rem 1rem;
       text-align: center;
+      border-bottom: 3px solid var(--primary-color);
     }
 
     header h1 {
       font-size: 3rem;
-      margin-bottom: 0.5rem;
+      color: var(--primary-color);
     }
 
     header p {
       font-size: 1.2rem;
+      color: var(--accent-color);
+      margin-top: 0.5rem;
     }
 
     nav {
-      background: #ffbc80;
+      background: var(--primary-color);
       display: flex;
       justify-content: center;
       gap: 2rem;
@@ -47,9 +54,10 @@
     }
 
     nav a {
-      color: #333;
+      color: white;
       text-decoration: none;
       font-weight: bold;
+      font-size: 1rem;
     }
 
     .section {
@@ -60,7 +68,7 @@
 
     .section h2 {
       font-size: 2.5rem;
-      color: #ff8c42;
+      color: var(--primary-color);
       margin-bottom: 1rem;
       text-align: center;
     }
@@ -73,37 +81,37 @@
     }
 
     .product-card {
-      background: #fff;
-      border-radius: 10px;
+      background: white;
+      border-left: 5px solid var(--primary-color);
       padding: 1.5rem;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-      text-align: center;
-      transition: transform 0.2s ease;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+      border-radius: 10px;
+      transition: 0.3s ease;
     }
 
     .product-card:hover {
-      transform: scale(1.03);
+      transform: translateY(-5px);
     }
 
     .product-card h3 {
-      color: #333;
       margin-bottom: 0.5rem;
+      color: var(--accent-color);
     }
 
     .product-card p {
-      font-size: 0.95rem;
       color: #666;
+      font-size: 0.95rem;
     }
 
     .about {
-      background: #fff2e1;
-      border-left: 5px solid #ff8c42;
+      background: white;
       padding: 2rem;
+      border-left: 5px solid var(--primary-color);
       margin-top: 2rem;
     }
 
     footer {
-      background: #ff8c42;
+      background: var(--primary-color);
       color: white;
       text-align: center;
       padding: 2rem 1rem;
@@ -128,8 +136,10 @@
 <body>
 
   <header>
+    <!-- You can upload the logo and link it here if hosting externally -->
+    <!-- Example: <img src="logo.png" alt="Pashuruchi Logo" height="80"> -->
     <h1>Pashuruchi</h1>
-    <p>Premium Pet Feed & Accessories for Every Animal Companion</p>
+    <p>Deliciously Crafted For Your Pets</p>
   </header>
 
   <nav>
@@ -144,23 +154,23 @@
     <div class="products">
       <div class="product-card">
         <h3>Dog Feed</h3>
-        <p>Nutritious and tasty meals tailored for all breeds of dogs.</p>
+        <p>Balanced nutrition and taste for dogs of all sizes and breeds.</p>
       </div>
       <div class="product-card">
         <h3>Cat Feed</h3>
-        <p>Protein-rich food with essential nutrients for happy cats.</p>
+        <p>Protein-rich, flavorful meals designed for happy cats.</p>
       </div>
       <div class="product-card">
         <h3>Goat Feed</h3>
-        <p>High-fiber and vitamin-enriched pellets for healthy goats.</p>
+        <p>Premium quality fiber and vitamins for healthy goats.</p>
       </div>
       <div class="product-card">
         <h3>Rabbit Feed</h3>
-        <p>Wholesome veggies and fiber-rich pellets for bouncy bunnies.</p>
+        <p>Crunchy and healthy blend for energetic bunnies.</p>
       </div>
       <div class="product-card">
         <h3>Bird Feed</h3>
-        <p>Seeds and grains mix designed to keep your birds chirping strong.</p>
+        <p>Wholesome grains and seeds to keep your birds chirping.</p>
       </div>
     </div>
   </section>
@@ -170,19 +180,19 @@
     <div class="products">
       <div class="product-card">
         <h3>Leashes & Collars</h3>
-        <p>Stylish, durable, and comfortable for everyday use.</p>
+        <p>Durable and stylish accessories for safe walks.</p>
       </div>
       <div class="product-card">
-        <h3>Toys</h3>
-        <p>Interactive and chewable toys that keep your pets engaged.</p>
+        <h3>Pet Toys</h3>
+        <p>Engaging toys to keep pets active and playful.</p>
       </div>
       <div class="product-card">
         <h3>Pet Beds</h3>
-        <p>Soft and cozy beds for restful sleep of your furry friend.</p>
+        <p>Comfortable sleeping spaces for ultimate relaxation.</p>
       </div>
       <div class="product-card">
         <h3>Feeding Bowls</h3>
-        <p>Safe, anti-slip, and easy-to-clean bowls in multiple sizes.</p>
+        <p>Safe, stable, and easy-to-clean feeding options.</p>
       </div>
     </div>
   </section>
@@ -191,7 +201,7 @@
     <h2>About Pashuruchi</h2>
     <div class="about">
       <p>
-        At <strong>Pashuruchi</strong>, we believe pets are not just animals — they are family. Our mission is to provide the finest pet feed and accessories crafted with love and backed by science. Whether you own a curious cat, a loyal dog, or a playful bird, we have something special for them all. With a blend of tradition and innovation, our products ensure health, happiness, and harmony for your beloved companions.
+        At <strong>Pashuruchi</strong>, we’re passionate about pets and their well-being. Our feed products are crafted with care, backed by research, and taste-tested by furry friends. Whether it's nutrition or comfort, we deliver only the best. Trusted by thousands of pet lovers, we’re building a healthier, happier world for every animal companion.
       </p>
     </div>
   </section>
@@ -199,9 +209,9 @@
   <section class="section" id="contact">
     <h2>Contact Us</h2>
     <div class="about">
-      <p>Email: hello@pashuruchi.com</p>
-      <p>Phone: +91 98765 43210</p>
-      <p>Follow us on social media: @pashuruchi</p>
+      <p>Email: info@pashuruchi.com</p>
+      <p>Phone: +91 9390359249</p>
+      <p>Instagram: @pashuruchi | Facebook: /pashuruchi</p>
     </div>
   </section>
 
