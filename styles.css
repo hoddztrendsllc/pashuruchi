@@ -1,0 +1,328 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap');
+
+:root {
+  --primary: #009999;
+  --accent: #333;
+  --bg: #fefefe;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Nunito', sans-serif;
+  background-color: var(--bg);
+  color: var(--accent);
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* === Animated Background (CSS Paw Prints) === */
+.animated-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.paw {
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  opacity: 0.07;
+  animation: floatUp 25s linear infinite;
+  filter: drop-shadow(0 0 2px var(--primary));
+}
+
+/* Paw shape using CSS (circle + 4 toes) */
+.paw::before,
+.paw::after,
+.paw div {
+  content: '';
+  position: absolute;
+  background-color: transparent;
+  border: 2px solid var(--primary);
+  border-radius: 50%;
+}
+
+/* Main pad */
+.paw::before {
+  width: 60px;
+  height: 60px;
+  top: 0;
+  left: 0;
+  border-radius: 50%;
+  box-sizing: border-box;
+  background: transparent;
+  border-color: var(--primary);
+  box-shadow: none;
+}
+
+/* Toes */
+.paw div:nth-child(1),
+.paw div:nth-child(2),
+.paw div:nth-child(3),
+.paw div:nth-child(4) {
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  border: 2px solid var(--primary);
+  background: transparent;
+  box-sizing: border-box;
+}
+
+/* Position toes relative to main pad */
+.paw div:nth-child(1) {
+  top: 5px;
+  left: 8px;
+}
+.paw div:nth-child(2) {
+  top: 5px;
+  left: 22px;
+}
+.paw div:nth-child(3) {
+  top: 5px;
+  left: 36px;
+}
+.paw div:nth-child(4) {
+  top: 18px;
+  left: 48px;
+}
+
+/* Create toes with ::after since div inside div won't work with plain HTML,
+   we'll create toes as pseudo elements on paw itself */
+.paw::after {
+  content: '';
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  border: 2px solid var(--primary);
+  background: transparent;
+  top: 12px;
+  left: 42px;
+}
+
+/* Because HTML divs inside paw aren't possible with your HTML, 
+   we can fake the toes with multiple ::after and ::before pseudo-elements.
+   Instead, let's redo paw with a single element and multiple box-shadow */
+
+.paw {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border: 2px solid var(--primary);
+  position: absolute;
+  background: transparent;
+  box-shadow:
+    /* 4 toes */
+    8px 5px 0 0 var(--bg),
+    8px 5px 0 2px var(--primary),
+    22px 5px 0 0 var(--bg),
+    22px 5px 0 2px var(--primary),
+    36px 5px 0 0 var(--bg),
+    36px 5px 0 2px var(--primary),
+    48px 18px 0 0 var(--bg),
+    48px 18px 0 2px var(--primary);
+}
+
+/* Position and animation delays for each paw */
+.animated-background .paw:nth-child(1) {
+  left: 10%;
+  top: 110%;
+  animation-delay: 0s;
+  animation-duration: 30s;
+  transform-origin: center;
+}
+
+.animated-background .paw:nth-child(2) {
+  left: 40%;
+  top: 120%;
+  animation-delay: 6s;
+  animation-duration: 28s;
+}
+
+.animated-background .paw:nth-child(3) {
+  left: 70%;
+  top: 115%;
+  animation-delay: 12s;
+  animation-duration: 32s;
+}
+
+.animated-background .paw:nth-child(4) {
+  left: 80%;
+  top: 125%;
+  animation-delay: 18s;
+  animation-duration: 27s;
+}
+
+.animated-background .paw:nth-child(5) {
+  left: 55%;
+  top: 130%;
+  animation-delay: 24s;
+  animation-duration: 29s;
+}
+
+@keyframes floatUp {
+  0% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 0.07;
+  }
+  50% {
+    opacity: 0.12;
+  }
+  100% {
+    transform: translateY(-130vh) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+/* === Header & Hero === */
+header {
+  background: white;
+  padding: 1.5rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 5px solid var(--primary);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo img {
+  height: 60px;
+  width: auto;
+  border-radius: 8px;
+}
+
+.logo-text {
+  color: var(--primary);
+  font-size: 1.8rem;
+  font-weight: 700;
+}
+
+nav {
+  display: flex;
+  gap: 1.5rem;
+}
+
+nav a {
+  text-decoration: none;
+  color: var(--accent);
+  font-weight: bold;
+  transition: color 0.3s;
+}
+
+nav a:hover {
+  color: var(--primary);
+}
+
+.hero {
+  text-align: center;
+  padding: 5rem 2rem;
+  background: linear-gradient(135deg, #e5f9f8, #ffffff);
+  position: relative;
+  z-index: 1;
+}
+
+.hero h1 {
+  font-size: 3rem;
+  color: var(--primary);
+}
+
+.hero p {
+  margin-top: 1rem;
+  font-size: 1.2rem;
+  color: #444;
+}
+
+.byline {
+  font-size: 1rem;
+  color: #666;
+  margin-top: 0.5rem;
+  font-style: italic;
+}
+
+.section {
+  padding: 3rem 1rem;
+  max-width: 1100px;
+  margin: auto;
+  position: relative;
+  z-index: 1;
+}
+
+.section h2 {
+  font-size: 2.5rem;
+  color: var(--primary);
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.products {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+}
+
+.product-card {
+  background: white;
+  padding: 1.5rem;
+  border-left: 5px solid var(--primary);
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  transition: transform 0.3s ease;
+}
+
+.product-card:hover {
+  transform: scale(1.02);
+}
+
+.product-card h3 {
+  margin-bottom: 0.5rem;
+}
+
+.product-card p {
+  color: #555;
+  font-size: 0.95rem;
+}
+
+.about, .contact {
+  background: white;
+  border-left: 5px solid var(--primary);
+  padding: 2rem;
+  margin-top: 2rem;
+}
+
+footer {
+  background: var(--primary);
+  color: white;
+  text-align: center;
+  padding: 2rem 1rem;
+  margin-top: 4rem;
+}
+
+@media (max-width: 768px) {
+  header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+  .logo-text {
+    font-size: 1.5rem;
+  }
+}
