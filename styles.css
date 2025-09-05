@@ -4,6 +4,7 @@
   --primary: #009999;
   --accent: #333;
   --bg: #fefefe;
+  --paw-color: #009999;
 }
 
 * {
@@ -18,9 +19,10 @@ body {
   color: var(--accent);
   overflow-x: hidden;
   position: relative;
+  min-height: 100vh;
 }
 
-/* === Animated Background (CSS Paw Prints) === */
+/* === Animated Background === */
 .animated-background {
   position: fixed;
   top: 0;
@@ -30,157 +32,97 @@ body {
   overflow: hidden;
   z-index: -1;
   pointer-events: none;
+  background: linear-gradient(135deg, #e5f9f8, #ffffff);
 }
 
+/* Paw print container to hold multiple paw prints */
 .paw {
   position: absolute;
-  width: 60px;
-  height: 60px;
-  opacity: 0.07;
-  animation: floatUp 25s linear infinite;
-  filter: drop-shadow(0 0 2px var(--primary));
-}
-
-/* Paw shape using CSS (circle + 4 toes) */
-.paw::before,
-.paw::after,
-.paw div {
-  content: '';
-  position: absolute;
-  background-color: transparent;
-  border: 2px solid var(--primary);
   border-radius: 50%;
-}
-
-/* Main pad */
-.paw::before {
-  width: 60px;
-  height: 60px;
-  top: 0;
-  left: 0;
-  border-radius: 50%;
-  box-sizing: border-box;
+  border: 3px solid var(--paw-color);
   background: transparent;
-  border-color: var(--primary);
-  box-shadow: none;
-}
-
-/* Toes */
-.paw div:nth-child(1),
-.paw div:nth-child(2),
-.paw div:nth-child(3),
-.paw div:nth-child(4) {
-  position: absolute;
-  width: 18px;
-  height: 18px;
-  border-radius: 50%;
-  border: 2px solid var(--primary);
-  background: transparent;
-  box-sizing: border-box;
-}
-
-/* Position toes relative to main pad */
-.paw div:nth-child(1) {
-  top: 5px;
-  left: 8px;
-}
-.paw div:nth-child(2) {
-  top: 5px;
-  left: 22px;
-}
-.paw div:nth-child(3) {
-  top: 5px;
-  left: 36px;
-}
-.paw div:nth-child(4) {
-  top: 18px;
-  left: 48px;
-}
-
-/* Create toes with ::after since div inside div won't work with plain HTML,
-   we'll create toes as pseudo elements on paw itself */
-.paw::after {
-  content: '';
-  position: absolute;
-  width: 16px;
-  height: 16px;
-  border-radius: 50%;
-  border: 2px solid var(--primary);
-  background: transparent;
-  top: 12px;
-  left: 42px;
-}
-
-/* Because HTML divs inside paw aren't possible with your HTML, 
-   we can fake the toes with multiple ::after and ::before pseudo-elements.
-   Instead, let's redo paw with a single element and multiple box-shadow */
-
-.paw {
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
-  border: 2px solid var(--primary);
-  position: absolute;
-  background: transparent;
+  filter: drop-shadow(0 0 3px var(--primary));
+  opacity: 0.1;
   box-shadow:
-    /* 4 toes */
-    8px 5px 0 0 var(--bg),
-    8px 5px 0 2px var(--primary),
-    22px 5px 0 0 var(--bg),
-    22px 5px 0 2px var(--primary),
-    36px 5px 0 0 var(--bg),
-    36px 5px 0 2px var(--primary),
-    48px 18px 0 0 var(--bg),
-    48px 18px 0 2px var(--primary);
+    7px 2px 0 0 var(--bg),
+    7px 2px 0 3px var(--paw-color),
+    20px 2px 0 0 var(--bg),
+    20px 2px 0 3px var(--paw-color),
+    33px 2px 0 0 var(--bg),
+    33px 2px 0 3px var(--paw-color),
+    43px 15px 0 0 var(--bg),
+    43px 15px 0 3px var(--paw-color);
+  animation-name: floatUpRotateFade;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
 }
 
 /* Position and animation delays for each paw */
-.animated-background .paw:nth-child(1) {
-  left: 10%;
-  top: 110%;
-  animation-delay: 0s;
-  animation-duration: 30s;
-  transform-origin: center;
-}
-
-.animated-background .paw:nth-child(2) {
-  left: 40%;
-  top: 120%;
-  animation-delay: 6s;
+.paw:nth-child(1) {
+  left: 5%;
+  bottom: -60px;
   animation-duration: 28s;
+  animation-delay: 0s;
+  width: 50px;
+  height: 50px;
 }
 
-.animated-background .paw:nth-child(3) {
-  left: 70%;
-  top: 115%;
-  animation-delay: 12s;
+.paw:nth-child(2) {
+  left: 25%;
+  bottom: -80px;
   animation-duration: 32s;
+  animation-delay: 6s;
+  width: 40px;
+  height: 40px;
 }
 
-.animated-background .paw:nth-child(4) {
-  left: 80%;
-  top: 125%;
+.paw:nth-child(3) {
+  left: 45%;
+  bottom: -70px;
+  animation-duration: 30s;
+  animation-delay: 12s;
+  width: 55px;
+  height: 55px;
+}
+
+.paw:nth-child(4) {
+  left: 65%;
+  bottom: -90px;
+  animation-duration: 26s;
   animation-delay: 18s;
-  animation-duration: 27s;
+  width: 45px;
+  height: 45px;
 }
 
-.animated-background .paw:nth-child(5) {
-  left: 55%;
-  top: 130%;
+.paw:nth-child(5) {
+  left: 80%;
+  bottom: -65px;
+  animation-duration: 31s;
   animation-delay: 24s;
-  animation-duration: 29s;
+  width: 50px;
+  height: 50px;
 }
 
-@keyframes floatUp {
+.paw:nth-child(6) {
+  left: 90%;
+  bottom: -85px;
+  animation-duration: 29s;
+  animation-delay: 8s;
+  width: 42px;
+  height: 42px;
+}
+
+/* Paw floating and rotation animation */
+@keyframes floatUpRotateFade {
   0% {
     transform: translateY(0) rotate(0deg);
-    opacity: 0.07;
+    opacity: 0.1;
   }
   50% {
-    opacity: 0.12;
+    opacity: 0.25;
   }
   100% {
-    transform: translateY(-130vh) rotate(360deg);
+    transform: translateY(-110vh) rotate(360deg);
     opacity: 0;
   }
 }
@@ -235,7 +177,6 @@ nav a:hover {
 .hero {
   text-align: center;
   padding: 5rem 2rem;
-  background: linear-gradient(135deg, #e5f9f8, #ffffff);
   position: relative;
   z-index: 1;
 }
